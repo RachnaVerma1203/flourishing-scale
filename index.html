@@ -81,6 +81,9 @@
     margin-bottom: 28px;
     box-shadow: var(--shadow);
     border: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
   .progress-top {
     display: flex;
@@ -196,57 +199,84 @@
   }
 
   /* ── LIKERT ── */
-  .likert-scale {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
+  .likert-wrap { width: 100%; }
   .likert-labels {
     display: flex;
     justify-content: space-between;
     font-size: 11px;
     color: #94a3b8;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    padding: 0 2px;
+  }
+  .likert-scale {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
   }
   .likert-scale label {
-    flex: 1;
-    min-width: 36px;
     text-align: center;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
   .likert-scale input[type="radio"] { display: none; }
   .likert-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 4px;
-    padding: 8px 4px 6px;
+    padding: 10px 4px;
     border: 2px solid var(--border);
-    border-radius: 8px;
-    transition: all 0.18s ease;
+    border-radius: 10px;
+    transition: all 0.15s ease;
     background: var(--light);
+    min-height: 62px;
+    touch-action: manipulation;
+    position: relative;
   }
   .likert-btn .num {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
     color: var(--mid);
+    line-height: 1;
+    transition: all 0.15s;
+  }
+  /* Label hidden by default — shown only when selected */
+  .likert-btn .lbl {
+    font-size: 9.5px;
+    color: var(--teal);
+    text-align: center;
+    line-height: 1.25;
+    font-weight: 600;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    display: none;
   }
   .likert-dot {
     width: 8px; height: 8px;
     border-radius: 50%;
     background: var(--border);
-    transition: background 0.18s;
+    transition: background 0.15s;
   }
+  /* Selected state — show label, highlight button */
   .likert-scale input:checked + .likert-btn {
     border-color: var(--teal);
     background: var(--teal-light);
+    box-shadow: 0 2px 10px rgba(13,124,102,0.18);
+    min-height: 72px;
   }
-  .likert-scale input:checked + .likert-btn .num { color: var(--teal); }
+  .likert-scale input:checked + .likert-btn .num { color: var(--teal); font-size: 14px; }
+  .likert-scale input:checked + .likert-btn .lbl { display: block; }
   .likert-scale input:checked + .likert-btn .likert-dot { background: var(--teal); }
+  /* Hover — show label on desktop */
   .likert-scale label:hover .likert-btn {
     border-color: var(--teal-mid);
     background: #f0faf8;
   }
+  .likert-scale label:hover .likert-btn .lbl { display: block; color: var(--mid); }
+  .likert-scale label:hover .likert-btn { min-height: 72px; }
 
   /* attention item */
   .item-attention .item-text { color: #94a3b8; font-size: 13.5px; font-style: italic; }
@@ -500,10 +530,129 @@
   .error-msg { color: #dc2626; font-size: 13px; margin-top: 8px; display: none; }
   .error-msg.show { display: block; }
 
+  /* ── UNANSWERED HIGHLIGHT ── */
+  .item-row.unanswered {
+    background: #fff5f5;
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    border-bottom: 1px solid #fecaca;
+    animation: shake 0.4s ease;
+  }
+  .item-row.unanswered .item-num {
+    background: #dc2626;
+  }
+  .item-row.unanswered .likert-btn {
+    border-color: #fca5a5;
+  }
+  .unanswered-badge {
+    display: inline-block;
+    background: #dc2626;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(3px); }
+  }
+
   /* print */
   @media print {
     .site-header, .progress-bar-wrap, .btn-actions, .section-dots { display: none; }
     .card { box-shadow: none; border: 1px solid #ccc; }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    .site-header { padding: 12px 14px; gap: 8px; }
+    .site-header h1 { font-size: 15px; }
+    .site-header .inst { font-size: 10px; }
+    .header-badge { font-size: 10px; padding: 3px 9px; }
+    .container { padding: 12px 10px 56px; }
+    .card { padding: 16px 12px; border-radius: 10px; margin-bottom: 12px; }
+    .progress-bar-wrap { padding: 10px 12px; margin-bottom: 12px; border-radius: 0; position: sticky; top: 0; }
+    .progress-label, .progress-count { font-size: 11px; }
+    .section-header { gap: 10px; margin-bottom: 14px; padding-bottom: 10px; }
+    .section-icon { width: 34px; height: 34px; font-size: 16px; }
+    .section-title { font-size: 16px; }
+    .section-sub { font-size: 11px; }
+    .section-def { font-size: 12.5px; padding: 10px 12px; margin-bottom: 12px; }
+    .item-text { font-size: 14px; line-height: 1.55; margin-bottom: 12px; }
+    .item-row { padding: 14px 0; }
+    /* Likert mobile tweaks */
+    .likert-btn { min-height: 56px; padding: 8px 2px; gap: 3px; border-radius: 8px; }
+    .likert-btn .num { font-size: 15px; }
+    .likert-scale input:checked + .likert-btn { min-height: 70px; }
+    .likert-scale input:checked + .likert-btn .lbl { font-size: 9px; }
+    .likert-dot { display: none; }
+    .likert-scale { gap: 4px; }
+    .scale-legend { padding: 10px 12px; font-size: 12px; }
+    .legend-row { gap: 4px 10px; }
+    .legend-item { font-size: 11.5px; }
+    .btn-actions { flex-direction: column-reverse; gap: 10px; margin-top: 20px; }
+    .btn { width: 100%; justify-content: center; padding: 16px 20px; font-size: 16px; border-radius: 12px; }
+    .intro-logo h2 { font-size: 20px; }
+    .intro-logo .logo-circle { width: 56px; height: 56px; font-size: 24px; }
+    .info-box { font-size: 13px; padding: 12px 13px; }
+    .info-pills { gap: 6px; }
+    .info-pill { font-size: 12px; padding: 5px 10px; }
+    .consent-check input[type="checkbox"] { width: 22px; height: 22px; }
+    .consent-check label { font-size: 13.5px; }
+    .demo-grid { grid-template-columns: 1fr; gap: 14px; }
+    .field-group select, .field-group input[type="text"] { font-size: 16px; padding: 13px 12px; }
+    .field-group label { font-size: 12px; }
+    .results-header { padding: 16px 8px 10px; }
+    .results-header h2 { font-size: 21px; }
+    .results-header .check-icon { width: 48px; height: 48px; font-size: 20px; }
+    .overall-score { padding: 20px 14px; border-radius: 10px; }
+    .overall-score .score-num { font-size: 44px; }
+    .overall-score .score-max { font-size: 18px; }
+    .overall-score .score-interp { font-size: 16px; }
+    .overall-score .score-desc { font-size: 13px; }
+    .dim-card { padding: 14px 12px; }
+    .dim-card-top { flex-wrap: wrap; gap: 8px; }
+    .dim-name { font-size: 14px; }
+    .dim-score-badge { font-size: 14px; padding: 5px 11px; }
+    .dim-interp { font-size: 13px; }
+    .section-dots { margin-bottom: 12px; }
+  }
+
+  /* ── VERY SMALL PHONES (≤360px) ── */
+  @media (max-width: 360px) {
+    .likert-scale { gap: 3px; }
+    .likert-btn { min-height: 54px; padding: 6px 1px; }
+    .likert-btn .num { font-size: 14px; }
+    .likert-scale input:checked + .likert-btn .lbl { font-size: 8px; }
+    .section-title { font-size: 14px; }
+    .card { padding: 12px 8px; }
+    .overall-score .score-num { font-size: 36px; }
+    .container { padding: 10px 8px 56px; }
+  }
+
+  /* ── TOUCH DEVICES ── */
+  @media (hover: none) and (pointer: coarse) {
+    .btn-primary:hover { transform: none; box-shadow: none; background: var(--teal); }
+    .likert-btn { min-height: 60px; }
+    .likert-scale label { -webkit-tap-highlight-color: transparent; }
+  }
+
+  /* ── LARGE SCREENS ── */
+  @media (min-width: 900px) {
+    .likert-btn { min-height: 68px; padding: 12px 4px; }
+    .likert-btn .num { font-size: 16px; }
+    .likert-scale { gap: 6px; }
   }
 </style>
 </head>
@@ -818,6 +967,7 @@ function renderIntro(main) {
     <div class="btn-actions">
       <button class="btn btn-primary" onclick="startSurvey()">Begin Assessment →</button>
     </div>
+    </div>
   </div>`;
   main.innerHTML = html;
 }
@@ -939,6 +1089,7 @@ function renderDemographics(main) {
       <button class="btn btn-outline" onclick="goBack()">← Back</button>
       <button class="btn btn-primary" onclick="nextFromDemo()">Continue to Scale →</button>
     </div>
+    </div>
   </div>`;
   main.innerHTML = html;
 }
@@ -1003,10 +1154,11 @@ function renderDimension(main, dimIdx) {
     }
   }
 
-  html += `<p id="dimError" class="error-msg">Please answer all items before continuing.</p>
+  html += `<div id="dimError" class="error-msg" style="background:#fff5f5;border:1px solid #fca5a5;border-radius:8px;padding:12px 16px;font-size:14px;color:#dc2626;margin-top:16px;display:none;align-items:center;gap:8px;"><span style="font-size:18px;">⚠️</span><span id="dimErrorText">Please answer all items before continuing.</span></div>
     <div class="btn-actions">
       <button class="btn btn-outline" onclick="goBack()">← Back</button>
       <button class="btn btn-primary" onclick="nextFromDim(${dimIdx})">${dimIdx === DIMENSIONS.length - 1 ? "See My Results →" : "Next Section →"}</button>
+    </div>
     </div>
   </div>`;
 
@@ -1035,18 +1187,24 @@ function renderItem(item) {
   return `
   <div class="item-row">
     <div class="item-text"><span class="item-num">${item.n}</span>${item.text}${revBadge}</div>
+    <div class="likert-wrap">
     <div class="likert-labels">
       <span>Strongly Disagree</span><span>Strongly Agree</span>
     </div>
     <div class="likert-scale">
-      ${[1,2,3,4,5,6,7].map(v => `
+      ${[
+        [1,"Strongly Disagree"],[2,"Disagree"],[3,"Somewhat Disagree"],
+        [4,"Neutral"],[5,"Somewhat Agree"],[6,"Agree"],[7,"Strongly Agree"]
+      ].map(([v,lbl]) => `
         <label>
           <input type="radio" name="q${item.n}" value="${v}" onchange="saveResponse(${item.n}, ${v})">
-          <div class="likert-btn">
+          <div class="likert-btn" title="${lbl}">
             <div class="num">${v}</div>
+            <div class="lbl">${lbl}</div>
             <div class="likert-dot"></div>
           </div>
         </label>`).join("")}
+    </div>
     </div>
   </div>`;
 }
@@ -1055,18 +1213,24 @@ function renderAttentionItem(attn) {
   return `
   <div class="item-row item-attention">
     <div class="item-text"><span class="item-num" style="background:#94a3b8">${attn.n}</span>${attn.text}</div>
+    <div class="likert-wrap">
     <div class="likert-labels">
       <span>Strongly Disagree</span><span>Strongly Agree</span>
     </div>
     <div class="likert-scale">
-      ${[1,2,3,4,5,6,7].map(v => `
+      ${[
+        [1,"Strongly Disagree"],[2,"Disagree"],[3,"Somewhat Disagree"],
+        [4,"Neutral"],[5,"Somewhat Agree"],[6,"Agree"],[7,"Strongly Agree"]
+      ].map(([v,lbl]) => `
         <label>
           <input type="radio" name="attn${attn.n}" value="${v}" onchange="saveAttention(${attn.n}, ${v})">
-          <div class="likert-btn">
+          <div class="likert-btn" title="${lbl}">
             <div class="num">${v}</div>
+            <div class="lbl">${lbl}</div>
             <div class="likert-dot"></div>
           </div>
         </label>`).join("")}
+    </div>
     </div>
   </div>`;
 }
@@ -1074,38 +1238,109 @@ function renderAttentionItem(attn) {
 function saveResponse(n, v) {
   responses[n] = v;
   updateProgress();
+  // Clear highlight on this item when answered
+  const el = document.querySelector(`input[name="q${n}"]`);
+  if (el) {
+    const row = el.closest(".item-row");
+    if (row) {
+      row.classList.remove("unanswered");
+      const badge = row.querySelector(".unanswered-badge");
+      if (badge) badge.remove();
+    }
+  }
+  // Hide error if all answered
+  const page = currentPage - 2;
+  if (page >= 0 && getAllUnansweredInDim(page).length === 0) {
+    const errEl = document.getElementById("dimError");
+    if (errEl) errEl.style.display = "none";
+  }
 }
 
 function saveAttention(n, v) {
   responses["attn_" + n] = v;
   attentionPass[n] = (v === ATTENTION.find(a => a.n === n).correct);
+  // Clear highlight
+  const el = document.querySelector(`input[name="attn${n}"]`);
+  if (el) {
+    const row = el.closest(".item-row");
+    if (row) {
+      row.classList.remove("unanswered");
+      const badge = row.querySelector(".unanswered-badge");
+      if (badge) badge.remove();
+    }
+  }
 }
 
 function nextFromDim(dimIdx) {
   const dim = DIMENSIONS[dimIdx];
-  // Check all items answered
-  for (const sv of dim.subValues) {
-    for (const item of sv.items) {
-      if (!responses[item.n]) {
-        document.getElementById("dimError").classList.add("show");
-        // scroll to first unanswered
-        const first = getAllUnansweredInDim(dimIdx)[0];
-        if (first) {
-          const el = document.querySelector(`input[name="q${first}"]`);
-          if (el) el.closest(".item-row").scrollIntoView({ behavior: "smooth", block: "center" });
+
+  // Clear previous highlights
+  document.querySelectorAll(".item-row.unanswered").forEach(el => {
+    el.classList.remove("unanswered");
+    const badge = el.querySelector(".unanswered-badge");
+    if (badge) badge.remove();
+  });
+
+  // Find all unanswered items
+  const unanswered = getAllUnansweredInDim(dimIdx);
+
+  // Check attention items
+  const ac = dim.id === "esteem" ? ATTENTION[0] : dim.id === "betterme" ? ATTENTION[1] : null;
+  let attnMissing = false;
+  if (ac && !responses["attn_" + ac.n]) {
+    attnMissing = true;
+    const attnEl = document.querySelector(`input[name="attn${ac.n}"]`);
+    if (attnEl) {
+      const row = attnEl.closest(".item-row");
+      if (row) {
+        row.classList.add("unanswered");
+        const textEl = row.querySelector(".item-text");
+        if (textEl && !textEl.querySelector(".unanswered-badge")) {
+          textEl.insertAdjacentHTML("beforeend", `<span class="unanswered-badge">Required</span>`);
         }
-        return;
       }
     }
   }
-  // Check attention items
-  const ac = dim.id === "esteem" ? ATTENTION[0] : dim.id === "betterme" ? ATTENTION[1] : null;
-  if (ac && !responses["attn_" + ac.n]) {
-    document.getElementById("dimError").classList.add("show");
+
+  if (unanswered.length === 0 && !attnMissing) {
+    currentPage++;
+    renderPage();
     return;
   }
-  currentPage++;
-  renderPage();
+
+  // Highlight each unanswered item
+  unanswered.forEach(n => {
+    const el = document.querySelector(`input[name="q${n}"]`);
+    if (el) {
+      const row = el.closest(".item-row");
+      if (row) {
+        row.classList.add("unanswered");
+        const textEl = row.querySelector(".item-text");
+        if (textEl && !textEl.querySelector(".unanswered-badge")) {
+          textEl.insertAdjacentHTML("beforeend", `<span class="unanswered-badge">Required</span>`);
+        }
+      }
+    }
+  });
+
+  // Show error with count
+  const total = unanswered.length + (attnMissing ? 1 : 0);
+  const errEl = document.getElementById("dimError");
+  const errText = document.getElementById("dimErrorText");
+  if (errEl) {
+    errEl.style.display = "flex";
+    if (errText) errText.textContent = `Please answer ${total} unanswered item${total > 1 ? "s" : ""} highlighted in red before continuing.`;
+  }
+
+  // Scroll to first unanswered
+  const firstN = unanswered[0];
+  if (firstN) {
+    const el = document.querySelector(`input[name="q${firstN}"]`);
+    if (el) el.closest(".item-row").scrollIntoView({ behavior: "smooth", block: "center" });
+  } else if (attnMissing && ac) {
+    const el = document.querySelector(`input[name="attn${ac.n}"]`);
+    if (el) el.closest(".item-row").scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 }
 
 function getAllUnansweredInDim(dimIdx) {
