@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flourishing at Work Scale — IIT Kharagpur</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #0d7c66;
+    --teal-light: #e8f5f2;
+    --teal-mid: #b2ddd5;
+    --gold: #c9973a;
+    --gold-light: #fdf5e6;
+    --dark: #1a2332;
+    --mid: #4a5568;
+    --light: #f7f9fc;
+    --white: #ffffff;
+    --border: #dde3ec;
+    --shadow: 0 2px 16px rgba(13,124,102,0.08);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--dark);
+    color: white;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 3px solid var(--teal);
+  }
+  .site-header .inst {
+    font-size: 13px;
+    color: #94a3b8;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .site-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    line-height: 1.3;
+  }
+  .header-badge {
+    margin-left: auto;
+    background: var(--teal);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-bar-wrap {
+    background: white;
+    border-radius: var(--radius);
+    padding: 18px 24px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .progress-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--mid);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .progress-count { font-size: 13px; color: var(--teal); font-weight: 600; }
+  .progress-track {
+    height: 6px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), #14a88a);
+    border-radius: 99px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+    animation: fadeSlide 0.4s ease;
+  }
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid var(--teal-light);
+  }
+  .section-icon {
+    width: 44px; height: 44px;
+    background: var(--teal-light);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 700; color: var(--dark); }
+  .section-sub { font-size: 13px; color: var(--mid); margin-top: 2px; font-weight: 400; }
+  .section-def {
+    background: var(--teal-light);
+    border-left: 4px solid var(--teal);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13.5px;
+    color: var(--mid);
+    margin-bottom: 24px;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* ── ITEM ── */
+  .item-row {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .item-row:last-child { border-bottom: none; }
+  .item-text {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    color: var(--dark);
+  }
+  .item-num {
+    display: inline-block;
+    background: var(--teal);
+    color: white;
+    border-radius: 50%;
+    width: 24px; height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 24px;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+  .item-reverse-badge {
+    display: inline-block;
+    background: var(--gold-light);
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    vertical-align: middle;
+  }
+
+  /* ── LIKERT ── */
+  .likert-scale {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .likert-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #94a3b8;
+    margin-bottom: 6px;
+  }
+  .likert-scale label {
+    flex: 1;
+    min-width: 36px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .likert-scale input[type="radio"] { display: none; }
+  .likert-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 4px 6px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.18s ease;
+    background: var(--light);
+  }
+  .likert-btn .num {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--mid);
+  }
+  .likert-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: background 0.18s;
+  }
+  .likert-scale input:checked + .likert-btn {
+    border-color: var(--teal);
+    background: var(--teal-light);
+  }
+  .likert-scale input:checked + .likert-btn .num { color: var(--teal); }
+  .likert-scale input:checked + .likert-btn .likert-dot { background: var(--teal); }
+  .likert-scale label:hover .likert-btn {
+    border-color: var(--teal-mid);
+    background: #f0faf8;
+  }
+
+  /* attention item */
+  .item-attention .item-text { color: #94a3b8; font-size: 13.5px; font-style: italic; }
+
+  /* ── DEMOGRAPHICS ── */
+  .demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 560px) { .demo-grid { grid-template-columns: 1fr; } }
+  .field-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--mid);
+    display: block;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .field-group select, .field-group input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--dark);
+    background: white;
+    transition: border-color 0.18s;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+  .field-group input[type="text"] { background-image: none; }
+  .field-group select:focus, .field-group input:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(13,124,102,0.1);
+  }
+  .field-full { grid-column: 1 / -1; }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: white;
+  }
+  .btn-primary:hover { background: #0a6554; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(13,124,102,0.25); }
+  .btn-outline {
+    background: white;
+    color: var(--teal);
+    border: 2px solid var(--teal);
+  }
+  .btn-outline:hover { background: var(--teal-light); }
+  .btn-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 28px; flex-wrap: wrap; }
+
+  /* ── CONSENT / INTRO ── */
+  .intro-logo {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .intro-logo .logo-circle {
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, var(--teal), #14a88a);
+    border-radius: 50%;
+    margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+  }
+  .intro-logo h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .intro-logo p { font-size: 15px; color: var(--mid); margin-top: 4px; }
+  .info-box {
+    background: var(--teal-light);
+    border: 1px solid var(--teal-mid);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+  .info-box strong { color: var(--teal); }
+  .info-pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 18px 0;
+  }
+  .info-pill {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--mid);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .consent-check { display: flex; align-items: flex-start; gap: 12px; margin: 20px 0; }
+  .consent-check input[type="checkbox"] { margin-top: 2px; width: 18px; height: 18px; accent-color: var(--teal); flex-shrink: 0; }
+  .consent-check label { font-size: 14px; color: var(--mid); line-height: 1.6; }
+
+  /* ── SCALE LEGEND ── */
+  .scale-legend {
+    background: var(--gold-light);
+    border: 1px solid #e8d5a8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: var(--mid);
+  }
+  .scale-legend strong { color: var(--gold); display: block; margin-bottom: 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .legend-row { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+  .legend-item { white-space: nowrap; }
+  .legend-item span { font-weight: 700; color: var(--dark); }
+
+  /* ── RESULTS ── */
+  .results-header {
+    text-align: center;
+    padding: 32px 24px 20px;
+  }
+  .results-header .check-icon {
+    width: 64px; height: 64px;
+    background: linear-gradient(135deg, var(--teal), #14a88a);
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+  }
+  .results-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .results-header p { color: var(--mid); font-size: 15px; margin-top: 6px; }
+
+  .overall-score {
+    background: linear-gradient(135deg, var(--teal), #0a6554);
+    color: white;
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    text-align: center;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 24px rgba(13,124,102,0.2);
+  }
+  .overall-score .score-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .overall-score .score-max { font-size: 22px; opacity: 0.7; }
+  .overall-score .score-label { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.8; margin-bottom: 8px; }
+  .overall-score .score-interp { font-size: 18px; font-weight: 600; margin-top: 8px; }
+  .overall-score .score-desc { font-size: 14px; opacity: 0.85; margin-top: 6px; line-height: 1.6; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+  .dim-card {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+  .dim-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .dim-name { font-size: 16px; font-weight: 700; color: var(--dark); }
+  .dim-sub-name { font-size: 12px; color: var(--mid); margin-top: 2px; }
+  .dim-score-badge {
+    background: var(--teal-light);
+    color: var(--teal);
+    font-size: 18px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+  .dim-bar-wrap {
+    height: 8px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .dim-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 1s cubic-bezier(.22,1,.36,1);
+  }
+  .dim-interp {
+    font-size: 13.5px;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+  .dim-interp strong { color: var(--dark); }
+
+  /* attention fail */
+  .attention-warning {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: #856404;
+    margin-bottom: 18px;
+  }
+
+  /* nav dots */
+  .section-dots {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .section-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: all 0.3s;
+  }
+  .section-dot.active { background: var(--teal); transform: scale(1.3); }
+  .section-dot.done { background: var(--teal-mid); }
+
+  /* error */
+  .error-msg { color: #dc2626; font-size: 13px; margin-top: 8px; display: none; }
+  .error-msg.show { display: block; }
+
+  /* print */
+  @media print {
+    .site-header, .progress-bar-wrap, .btn-actions, .section-dots { display: none; }
+    .card { box-shadow: none; border: 1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <div class="inst">IIT Kharagpur · VGSOM</div>
+    <h1>Flourishing at Work Scale</h1>
+  </div>
+  <div class="header-badge">Self-Assessment</div>
+</header>
+
+<div class="container">
+
+  <div class="progress-bar-wrap" id="progressWrap" style="display:none">
+    <div class="progress-top">
+      <span class="progress-label" id="progressLabel">Section 1 of 6</span>
+      <span class="progress-count" id="progressCount">0 / 50 items answered</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <div class="section-dots" id="sectionDots" style="display:none"></div>
+
+  <div id="mainContent"></div>
+
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────
+
+const DIMENSIONS = [
+  {
+    id: "fundamental",
+    name: "Fundamental Values",
+    icon: "🌱",
+    subValues: [
+      {
+        name: "Financial Security",
+        def: "Consistent and sufficient income to meet personal and family needs.",
+        items: [
+          { n:1, text:"I feel confident that I could handle a major unexpected expense." },
+          { n:2, text:"I have money in reserve at the end of the month." },
+          { n:3, text:"My income is enough to provide for the well-being of my family." },
+          { n:4, text:"I am satisfied with my current earnings." },
+          { n:5, text:"My job allows me to steadily accumulate wealth." },
+          { n:6, text:"My income isn't enough to cover my monthly expenses.", rev:true },
+        ]
+      },
+      {
+        name: "Job Security",
+        def: "Assurance that one's employment is stable and not under constant threat.",
+        items: [
+          { n:7, text:"I worry about losing my job.", rev:true },
+          { n:8, text:"I feel my job is secure." },
+        ]
+      },
+      {
+        name: "Mental & Physical Health",
+        def: "A state where an individual's psychological and bodily well-being are not negatively affected by work.",
+        items: [
+          { n:9,  text:"I rarely experience physical exhaustion due to my work." },
+          { n:10, text:"I can maintain healthy routines (like eating, sleeping, and exercising) alongside my job." },
+          { n:11, text:"My job harms my physical health.", rev:true },
+          { n:12, text:"My job does not negatively affect my mental health." },
+          { n:13, text:"I feel excessive levels of stress at work.", rev:true },
+          { n:14, text:"I often feel frustrated or angry at work.", rev:true },
+          { n:15, text:"I find it hard to concentrate at work.", rev:true },
+        ]
+      },
+      {
+        name: "Work-Life Balance",
+        def: "Being able to manage professional responsibilities without sacrificing personal time, relationships, or self-care.",
+        items: [
+          { n:16, text:"I can maintain a balance between work, family, friends, and physical activity." },
+          { n:17, text:"My work schedule allows me to have time to rest." },
+          { n:18, text:"My job demands negatively affect my personal life.", rev:true },
+        ]
+      }
+    ],
+    color: "#0d7c66",
+    maxScore: function() {
+      return this.subValues.reduce((a,s) => a + s.items.length * 7, 0);
+    }
+  },
+  {
+    id: "esteem",
+    name: "Esteem-Related Values",
+    icon: "⭐",
+    subValues: [
+      {
+        name: "Career Advancement",
+        def: "Progression, promotions, and growth in professional standing.",
+        items: [
+          { n:19, text:"I am advancing rapidly in my career." },
+          { n:20, text:"My career progression is meeting my expectations." },
+          { n:21, text:"I am making steady progress in my career." },
+        ]
+      },
+      {
+        name: "Recognition",
+        def: "Being acknowledged for one's contributions and efforts.",
+        items: [
+          { n:22, text:"I regularly receive appreciation for the contributions I make." },
+          // 23 = attention check — handled separately
+          { n:24, text:"My contributions at work are valued by others." },
+          { n:25, text:"My hard work goes unnoticed.", rev:true },
+        ]
+      },
+      {
+        name: "Respect",
+        def: "Being treated with dignity and respect at work.",
+        items: [
+          { n:26, text:"I am treated with respect by others with whom I work." },
+          { n:27, text:"I feel respected by management in this organization." },
+        ]
+      },
+      {
+        name: "Lifestyle Upgradation",
+        def: "Improvements in the standard of living due to work.",
+        items: [
+          { n:28, text:"I have been able to afford valuable things like a home, vehicle, or travel with my income." },
+          { n:29, text:"My job has improved my standard of living." },
+          { n:30, text:"My job enables me to afford quality healthcare and education for my family." },
+        ]
+      }
+    ],
+    color: "#7c3aed",
+    maxScore: function() {
+      return this.subValues.reduce((a,s) => a + s.items.length * 7, 0);
+    }
+  },
+  {
+    id: "betterme",
+    name: "A Better 'Me' Values",
+    icon: "🌟",
+    subValues: [
+      {
+        name: "Emotional",
+        def: "Experience of positive emotions at work — enjoyment, vitality, absorption, satisfaction, and inner contentment.",
+        items: [
+          { n:31, text:"Time flies when I'm working." },
+          { n:32, text:"I feel energized when I am working." },
+          { n:33, text:"I look forward to going to work each morning." },
+          { n:34, text:"I find my work deeply fulfilling." },
+          { n:35, text:"My work makes me happy." },
+          { n:36, text:"I am satisfied with my job." },
+          { n:37, text:"I would prefer to be doing a different job.", rev:true },
+          { n:38, text:"My job feels routine and uninspiring.", rev:true },
+        ]
+      },
+      {
+        name: "Psychological",
+        def: "Being able to think deeply, learn, solve problems, and engage in intellectually meaningful and stimulating work.",
+        items: [
+          { n:39, text:"I often find myself learning at work." },
+          { n:40, text:"My job allows me to achieve my full potential." },
+          // 41 = attention check
+          { n:42, text:"I am growing a lot as a person through my work." },
+          { n:43, text:"I am good at the job I do." },
+          { n:44, text:"I meet the expectations of my job role." },
+        ]
+      },
+      {
+        name: "Social",
+        def: "Experiencing a sense of belonging and connection at work.",
+        items: [
+          { n:45, text:"I don't really mix with people at work.", rev:true },
+          { n:46, text:"I often feel alone when I am with my colleagues.", rev:true },
+          { n:47, text:"I feel a sense of belonging with the people I work with." },
+        ]
+      }
+    ],
+    color: "#0369a1",
+    maxScore: function() {
+      return this.subValues.reduce((a,s) => a + s.items.length * 7, 0);
+    }
+  },
+  {
+    id: "greatergood",
+    name: "Greater Good",
+    icon: "🌍",
+    subValues: [
+      {
+        name: "Purpose & Impact",
+        def: "A sense of purpose derived from positively impacting others, the organization, or society through one's work.",
+        items: [
+          { n:48, text:"The work that I do contributes to creating value for others (e.g., organization, customers, or society)." },
+          { n:49, text:"The work I do serves a greater purpose." },
+          { n:50, text:"My work helps in making a real difference in the world." },
+          { n:51, text:"My work allows me to make a positive difference in other people's lives." },
+          { n:52, text:"My work serves more than just my own interests." },
+        ]
+      }
+    ],
+    color: "#c05621",
+    maxScore: function() {
+      return this.subValues.reduce((a,s) => a + s.items.length * 7, 0);
+    }
+  }
+];
+
+// Attention checks
+const ATTENTION = [
+  { n:23, text:"For this item, please select 4 to show you are paying attention.", correct:4 },
+  { n:41, text:"Please select Strongly Disagree (1) for this item if you are paying attention.", correct:1 },
+];
+
+const LIKERT_LABELS = ["Strongly Disagree","Disagree","Somewhat Disagree","Neutral","Somewhat Agree","Agree","Strongly Agree"];
+
+// All responses stored by item number
+const responses = {};
+let attentionPass = { 23: null, 41: null };
+
+// Pages: 0=intro, 1=demographics, 2..=dimensions, last=results
+let currentPage = 0;
+const TOTAL_PAGES = 2 + DIMENSIONS.length + 1; // intro + demo + dims + results
+
+// Demo answers
+let demoData = {};
+
+// ── SCORING HELPERS ────────────────────────────────────────────────────────
+
+function scoreItem(n, raw) {
+  // check if reversed
+  for (const dim of DIMENSIONS) {
+    for (const sv of dim.subValues) {
+      for (const item of sv.items) {
+        if (item.n === n && item.rev) return 8 - raw;
+      }
+    }
+  }
+  return raw;
+}
+
+function getAllItems() {
+  const all = [];
+  for (const dim of DIMENSIONS)
+    for (const sv of dim.subValues)
+      for (const item of sv.items)
+        all.push(item);
+  return all;
+}
+
+function countAnswered() {
+  return Object.keys(responses).length;
+}
+
+// ── RENDER ─────────────────────────────────────────────────────────────────
+
+function renderPage() {
+  const main = document.getElementById("mainContent");
+  main.innerHTML = "";
+
+  if (currentPage === 0) renderIntro(main);
+  else if (currentPage === 1) renderDemographics(main);
+  else if (currentPage >= 2 && currentPage < 2 + DIMENSIONS.length) renderDimension(main, currentPage - 2);
+  else renderResults(main);
+
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// ── INTRO ──────────────────────────────────────────────────────────────────
+
+function renderIntro(main) {
+  document.getElementById("progressWrap").style.display = "none";
+  document.getElementById("sectionDots").style.display = "none";
+
+  const html = `
+  <div class="card">
+    <div class="intro-logo">
+      <div class="logo-circle">🌿</div>
+      <h2>Are You Flourishing at Work?</h2>
+      <p>Workplace Flourishing Self-Assessment — IIT Kharagpur</p>
+    </div>
+
+    <div class="info-box">
+      <strong>About this Study</strong>
+      The purpose of this research is to develop and validate a reliable scale that measures flourishing at the workplace.
+      Your honest responses will help create a tool that assists organizations and researchers in promoting employee well-being.
+    </div>
+
+    <div class="info-pills">
+      <div class="info-pill">⏱️ 10–15 minutes</div>
+      <div class="info-pill">🔒 Confidential</div>
+      <div class="info-pill">✅ Voluntary</div>
+      <div class="info-pill">📋 50 items</div>
+    </div>
+
+    <div class="info-box" style="background:#f8fafc; border-color: var(--border);">
+      <strong style="color:var(--mid)">Researchers</strong>
+      Ms. Rachna Verma, Dr. S Srinivasan, & Dr. Susmita Mukhopadhyay<br>
+      Vinod Gupta School of Management, IIT Kharagpur<br>
+      <a href="mailto:vermarachna@kgpian.iitkgp.ac.in" style="color:var(--teal)">vermarachna@kgpian.iitkgp.ac.in</a>
+    </div>
+
+    <div class="consent-check">
+      <input type="checkbox" id="consentBox">
+      <label for="consentBox">
+        I have read the information above. I voluntarily agree to participate. I understand my participation is confidential,
+        I may withdraw at any time, and the information I provide will be used only for research purposes.
+        I confirm that I am <strong>currently employed</strong> (not self-employed).
+      </label>
+    </div>
+
+    <p id="consentError" class="error-msg">Please check the consent box to proceed.</p>
+
+    <div class="btn-actions">
+      <button class="btn btn-primary" onclick="startSurvey()">Begin Assessment →</button>
+    </div>
+  </div>`;
+  main.innerHTML = html;
+}
+
+function startSurvey() {
+  if (!document.getElementById("consentBox").checked) {
+    document.getElementById("consentError").classList.add("show");
+    return;
+  }
+  currentPage = 1;
+  renderPage();
+}
+
+// ── DEMOGRAPHICS ──────────────────────────────────────────────────────────
+
+function renderDemographics(main) {
+  document.getElementById("progressWrap").style.display = "none";
+  document.getElementById("sectionDots").style.display = "none";
+
+  const html = `
+  <div class="card">
+    <div class="section-header">
+      <div class="section-icon">👤</div>
+      <div>
+        <div class="section-title">About You</div>
+        <div class="section-sub">Section A: Demographic Information (all responses are confidential)</div>
+      </div>
+    </div>
+
+    <div class="demo-grid">
+      <div class="field-group">
+        <label>Gender</label>
+        <select id="d_gender">
+          <option value="">— Select —</option>
+          <option>Male</option><option>Female</option><option>Other</option><option>Prefer not to say</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Age Group</label>
+        <select id="d_age">
+          <option value="">— Select —</option>
+          <option>Below 25</option><option>25–34</option><option>35–44</option><option>45–54</option><option>55 and above</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Marital Status</label>
+        <select id="d_marital">
+          <option value="">— Select —</option>
+          <option>Single</option><option>Married</option><option>Divorced/Separated</option><option>Widowed</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Education</label>
+        <select id="d_edu">
+          <option value="">— Select —</option>
+          <option>Diploma</option><option>Bachelor's Degree</option><option>Master's Degree</option><option>Doctorate</option><option>Other</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Employment Type</label>
+        <select id="d_emp">
+          <option value="">— Select —</option>
+          <option>Permanent</option><option>Contractual</option><option>Part-time</option><option>Other</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Organization Type</label>
+        <select id="d_org">
+          <option value="">— Select —</option>
+          <option>Public Sector</option><option>Private Sector</option><option>Non-profit/NGO</option><option>Academic/Research</option><option>Other</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Industry / Sector</label>
+        <select id="d_industry">
+          <option value="">— Select —</option>
+          <option>Education</option><option>Healthcare</option><option>IT/Technology</option><option>Manufacturing</option>
+          <option>Finance/Banking</option><option>Government</option><option>Other</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Total Work Experience</label>
+        <select id="d_exp">
+          <option value="">— Select —</option>
+          <option>Less than 1 year</option><option>1–3 years</option><option>4–7 years</option><option>8–12 years</option><option>More than 12 years</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Tenure in Current Org.</label>
+        <select id="d_tenure">
+          <option value="">— Select —</option>
+          <option>Less than 1 year</option><option>1–3 years</option><option>4–7 years</option><option>8–12 years</option><option>More than 12 years</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Work Setting</label>
+        <select id="d_setting">
+          <option value="">— Select —</option>
+          <option>Office-based</option><option>Remote</option><option>Hybrid</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Monthly Income</label>
+        <select id="d_income">
+          <option value="">— Select —</option>
+          <option>Below ₹25,000</option><option>₹25,001–₹50,000</option><option>₹50,001–₹75,000</option>
+          <option>₹75,001–₹1,00,000</option><option>Above ₹1,00,000</option><option>Prefer not to say</option>
+        </select>
+      </div>
+      <div class="field-group field-full">
+        <label>Current Position / Designation (Optional)</label>
+        <input type="text" id="d_position" placeholder="e.g. Senior Manager, Research Associate...">
+      </div>
+    </div>
+
+    <p style="font-size:13px; color:#94a3b8; margin-top:16px;">* Demographic fields are optional but help with research analysis.</p>
+
+    <div class="btn-actions">
+      <button class="btn btn-outline" onclick="goBack()">← Back</button>
+      <button class="btn btn-primary" onclick="nextFromDemo()">Continue to Scale →</button>
+    </div>
+  </div>`;
+  main.innerHTML = html;
+}
+
+function nextFromDemo() {
+  // Save demo (all optional)
+  demoData = {
+    gender: document.getElementById("d_gender").value,
+    age: document.getElementById("d_age").value,
+    marital: document.getElementById("d_marital").value,
+    edu: document.getElementById("d_edu").value,
+    emp: document.getElementById("d_emp").value,
+    org: document.getElementById("d_org").value,
+    industry: document.getElementById("d_industry").value,
+    exp: document.getElementById("d_exp").value,
+    tenure: document.getElementById("d_tenure").value,
+    setting: document.getElementById("d_setting").value,
+    income: document.getElementById("d_income").value,
+    position: document.getElementById("d_position").value,
+  };
+  currentPage = 2;
+  renderPage();
+}
+
+// ── DIMENSION PAGE ─────────────────────────────────────────────────────────
+
+function renderDimension(main, dimIdx) {
+  const dim = DIMENSIONS[dimIdx];
+  document.getElementById("progressWrap").style.display = "";
+  document.getElementById("sectionDots").style.display = "";
+  updateDots(dimIdx);
+
+  let html = `<div class="card">
+    <div class="section-header">
+      <div class="section-icon">${dim.icon}</div>
+      <div>
+        <div class="section-title">${dim.name}</div>
+        <div class="section-sub">Section ${dimIdx + 1} of ${DIMENSIONS.length}</div>
+      </div>
+    </div>
+
+    <div class="scale-legend">
+      <strong>Response Scale</strong>
+      <div class="legend-row">
+        ${LIKERT_LABELS.map((l,i) => `<div class="legend-item"><span>${i+1}</span> = ${l}</div>`).join("")}
+      </div>
+    </div>`;
+
+  // Render sub-values and items
+  for (const sv of dim.subValues) {
+    html += `<div class="section-def"><strong>${sv.name}:</strong> ${sv.def}</div>`;
+    for (const item of sv.items) {
+      html += renderItem(item);
+    }
+
+    // Inject attention check after item 22 (in esteem) and item 40 (in betterme)
+    if (dim.id === "esteem" && sv.name === "Recognition") {
+      html += renderAttentionItem(ATTENTION[0]);
+    }
+    if (dim.id === "betterme" && sv.name === "Psychological") {
+      html += renderAttentionItem(ATTENTION[1]);
+    }
+  }
+
+  html += `<p id="dimError" class="error-msg">Please answer all items before continuing.</p>
+    <div class="btn-actions">
+      <button class="btn btn-outline" onclick="goBack()">← Back</button>
+      <button class="btn btn-primary" onclick="nextFromDim(${dimIdx})">${dimIdx === DIMENSIONS.length - 1 ? "See My Results →" : "Next Section →"}</button>
+    </div>
+  </div>`;
+
+  main.innerHTML = html;
+
+  // Restore any previous responses
+  const allItems = [];
+  for (const sv of dim.subValues) for (const item of sv.items) allItems.push(item.n);
+
+  for (const n of allItems) {
+    if (responses[n]) {
+      const radio = document.querySelector(`input[name="q${n}"][value="${responses[n]}"]`);
+      if (radio) radio.checked = true;
+    }
+  }
+  // Attention
+  const ac = dim.id === "esteem" ? ATTENTION[0] : dim.id === "betterme" ? ATTENTION[1] : null;
+  if (ac && responses["attn_" + ac.n]) {
+    const radio = document.querySelector(`input[name="attn${ac.n}"][value="${responses["attn_"+ac.n]}"]`);
+    if (radio) radio.checked = true;
+  }
+}
+
+function renderItem(item) {
+  const revBadge = item.rev ? `<span class="item-reverse-badge">R</span>` : "";
+  return `
+  <div class="item-row">
+    <div class="item-text"><span class="item-num">${item.n}</span>${item.text}${revBadge}</div>
+    <div class="likert-labels">
+      <span>Strongly Disagree</span><span>Strongly Agree</span>
+    </div>
+    <div class="likert-scale">
+      ${[1,2,3,4,5,6,7].map(v => `
+        <label>
+          <input type="radio" name="q${item.n}" value="${v}" onchange="saveResponse(${item.n}, ${v})">
+          <div class="likert-btn">
+            <div class="num">${v}</div>
+            <div class="likert-dot"></div>
+          </div>
+        </label>`).join("")}
+    </div>
+  </div>`;
+}
+
+function renderAttentionItem(attn) {
+  return `
+  <div class="item-row item-attention">
+    <div class="item-text"><span class="item-num" style="background:#94a3b8">${attn.n}</span>${attn.text}</div>
+    <div class="likert-labels">
+      <span>Strongly Disagree</span><span>Strongly Agree</span>
+    </div>
+    <div class="likert-scale">
+      ${[1,2,3,4,5,6,7].map(v => `
+        <label>
+          <input type="radio" name="attn${attn.n}" value="${v}" onchange="saveAttention(${attn.n}, ${v})">
+          <div class="likert-btn">
+            <div class="num">${v}</div>
+            <div class="likert-dot"></div>
+          </div>
+        </label>`).join("")}
+    </div>
+  </div>`;
+}
+
+function saveResponse(n, v) {
+  responses[n] = v;
+  updateProgress();
+}
+
+function saveAttention(n, v) {
+  responses["attn_" + n] = v;
+  attentionPass[n] = (v === ATTENTION.find(a => a.n === n).correct);
+}
+
+function nextFromDim(dimIdx) {
+  const dim = DIMENSIONS[dimIdx];
+  // Check all items answered
+  for (const sv of dim.subValues) {
+    for (const item of sv.items) {
+      if (!responses[item.n]) {
+        document.getElementById("dimError").classList.add("show");
+        // scroll to first unanswered
+        const first = getAllUnansweredInDim(dimIdx)[0];
+        if (first) {
+          const el = document.querySelector(`input[name="q${first}"]`);
+          if (el) el.closest(".item-row").scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        return;
+      }
+    }
+  }
+  // Check attention items
+  const ac = dim.id === "esteem" ? ATTENTION[0] : dim.id === "betterme" ? ATTENTION[1] : null;
+  if (ac && !responses["attn_" + ac.n]) {
+    document.getElementById("dimError").classList.add("show");
+    return;
+  }
+  currentPage++;
+  renderPage();
+}
+
+function getAllUnansweredInDim(dimIdx) {
+  const dim = DIMENSIONS[dimIdx];
+  const unanswered = [];
+  for (const sv of dim.subValues)
+    for (const item of sv.items)
+      if (!responses[item.n]) unanswered.push(item.n);
+  return unanswered;
+}
+
+function goBack() {
+  if (currentPage > 0) { currentPage--; renderPage(); }
+}
+
+// ── PROGRESS ───────────────────────────────────────────────────────────────
+
+function updateProgress() {
+  const total = getAllItems().length; // 50
+  const answered = countAnswered();
+  document.getElementById("progressFill").style.width = (answered / total * 100) + "%";
+  document.getElementById("progressCount").textContent = `${answered} / ${total} items answered`;
+  if (currentPage >= 2 && currentPage < 2 + DIMENSIONS.length) {
+    document.getElementById("progressLabel").textContent = `Section ${currentPage - 1} of ${DIMENSIONS.length + 1}`;
+  }
+}
+
+function updateDots(dimIdx) {
+  const dots = document.getElementById("sectionDots");
+  dots.innerHTML = DIMENSIONS.map((d, i) => `
+    <div class="section-dot ${i < dimIdx ? "done" : i === dimIdx ? "active" : ""}" title="${d.name}"></div>
+  `).join("");
+}
+
+// ── RESULTS ────────────────────────────────────────────────────────────────
+
+function renderResults(main) {
+  document.getElementById("progressWrap").style.display = "none";
+  document.getElementById("sectionDots").style.display = "none";
+
+  // Calculate scores
+  const dimScores = DIMENSIONS.map(dim => {
+    let raw = 0, max = 0;
+    for (const sv of dim.subValues) {
+      for (const item of sv.items) {
+        raw += scoreItem(item.n, responses[item.n] || 4);
+        max += 7;
+      }
+    }
+    const pct = Math.round(raw / max * 100);
+    return { dim, raw, max, pct };
+  });
+
+  const totalRaw = dimScores.reduce((a, d) => a + d.raw, 0);
+  const totalMax = dimScores.reduce((a, d) => a + d.max, 0);
+  const totalPct = Math.round(totalRaw / totalMax * 100);
+
+  // Overall interpretation
+  const overall = getOverallInterp(totalPct);
+
+  // Attention check
+  const aFail = !attentionPass[23] || !attentionPass[41];
+
+  let html = `
+  <div class="card">
+    <div class="results-header">
+      <div class="check-icon">✅</div>
+      <h2>Your Flourishing Profile</h2>
+      <p>Based on the Flourishing at Work Scale — IIT Kharagpur</p>
+    </div>
+  </div>
+
+  ${aFail ? `<div class="attention-warning">⚠️ Note: One or more attention-check items may not have been answered as instructed. Your scores are shown for reference, but results should be interpreted with caution.</div>` : ""}
+
+  <div class="overall-score">
+    <div class="score-label">Overall Flourishing Score</div>
+    <div><span class="score-num">${totalRaw}</span><span class="score-max"> / ${totalMax}</span></div>
+    <div class="score-interp">${overall.label}</div>
+    <div class="score-desc">${overall.desc}</div>
+  </div>
+
+  <div class="card" style="padding:24px 28px">
+    <div class="section-header" style="margin-bottom:20px">
+      <div class="section-icon">📊</div>
+      <div>
+        <div class="section-title">Dimension-wise Scores</div>
+        <div class="section-sub">How you score across the four value categories</div>
+      </div>
+    </div>`;
+
+  for (const ds of dimScores) {
+    const interp = getDimInterp(ds.dim.id, ds.pct);
+    html += `
+    <div class="dim-card">
+      <div class="dim-card-top">
+        <div>
+          <div class="dim-name">${ds.dim.icon} ${ds.dim.name}</div>
+          <div class="dim-sub-name">${interp.label}</div>
+        </div>
+        <div class="dim-score-badge">${ds.raw} / ${ds.max}</div>
+      </div>
+      <div class="dim-bar-wrap">
+        <div class="dim-bar-fill" style="width:${ds.pct}%; background:${ds.dim.color}"></div>
+      </div>
+      <div class="dim-interp">${interp.text}</div>
+    </div>`;
+  }
+
+  html += `</div>
+
+  <div class="card" style="padding:24px 28px">
+    <div class="section-header" style="margin-bottom:16px">
+      <div class="section-icon">💡</div>
+      <div><div class="section-title">What This Means</div></div>
+    </div>
+    <p style="font-size:14px; color:var(--mid); line-height:1.8;">
+      This assessment is based on the <em>Flourishing at Work Scale</em> developed through grounded research at IIT Kharagpur,
+      exploring how employees perceive and experience flourishing across four interconnected value categories.
+      Your results reflect your <strong>current experience</strong> at work — not a fixed trait.
+      Scores can change with changes in your job, role, organization, or personal circumstances.
+    </p>
+    <p style="font-size:13px; color:#94a3b8; margin-top:12px; line-height:1.7;">
+      Disclaimer: This tool is for research and self-reflection purposes only. It is not a clinical instrument.
+      Please contact the research team for academic queries.
+    </p>
+  </div>
+
+  <div id="submissionStatus" style="margin-bottom:16px;">
+    <div style="background:#f7f9fc; border:1px solid var(--border); border-radius:8px; padding:14px 18px; font-size:14px; color:#94a3b8; display:flex; align-items:center; gap:10px;">
+      <span style="font-size:18px;">⏳</span>
+      <span>Submitting your responses to the research team…</span>
+    </div>
+  </div>
+
+  <div class="btn-actions">
+    <button class="btn btn-outline" onclick="window.print()">🖨️ Print Results</button>
+    <button class="btn btn-primary" onclick="retake()">↺ Retake Assessment</button>
+  </div>`;
+
+  main.innerHTML = html;
+
+  // Animate bars
+  setTimeout(() => {
+    document.querySelectorAll(".dim-bar-fill").forEach(el => {
+      const w = el.style.width;
+      el.style.width = "0%";
+      setTimeout(() => { el.style.width = w; }, 100);
+    });
+  }, 100);
+
+  // ── Submit data to Formspree ──
+  submitToFormspree(dimScores, totalRaw, totalMax, totalPct, overall);
+}
+
+async function submitToFormspree(dimScores, totalRaw, totalMax, totalPct, overall) {
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_L8FqRsLkqpsqPYv4XFhJOnata7EEPm4oCwrIWZs3TqZbf7nLLd60wf1-j0SCxwk-/exec";
+
+  // Build flat payload — one key per field (CSV-friendly)
+  const payload = {
+    // Timestamp
+    submitted_at: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+
+    // Demographics
+    gender:       demoData.gender    || "",
+    age_group:    demoData.age       || "",
+    marital:      demoData.marital   || "",
+    education:    demoData.edu       || "",
+    employment:   demoData.emp       || "",
+    org_type:     demoData.org       || "",
+    industry:     demoData.industry  || "",
+    work_exp:     demoData.exp       || "",
+    tenure:       demoData.tenure    || "",
+    work_setting: demoData.setting   || "",
+    income:       demoData.income    || "",
+    designation:  demoData.position  || "",
+
+    // All 50 item responses (raw)
+    ...Object.fromEntries(
+      getAllItems().map(item => [`Q${item.n}_raw`, responses[item.n] || ""])
+    ),
+
+    // All 50 item responses (scored — reverse items flipped)
+    ...Object.fromEntries(
+      getAllItems().map(item => [`Q${item.n}_scored`, scoreItem(item.n, responses[item.n] || 0)])
+    ),
+
+    // Attention checks
+    attention_Q23: responses["attn_23"] || "",
+    attention_Q23_pass: attentionPass[23] ? "PASS" : "FAIL",
+    attention_Q41: responses["attn_41"] || "",
+    attention_Q41_pass: attentionPass[41] ? "PASS" : "FAIL",
+
+    // Dimension scores
+    ...Object.fromEntries(
+      dimScores.map(ds => [
+        `dim_${ds.dim.id}`,
+        `${ds.raw}/${ds.max} (${ds.pct}%)`
+      ])
+    ),
+
+    // Overall
+    total_score:   `${totalRaw}/${totalMax}`,
+    total_pct:     `${totalPct}%`,
+    flourishing_level: overall.label.replace(/[^\w\s]/g, "").trim(),
+  };
+
+  try {
+    // Google Apps Script requires no-cors mode
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    // no-cors means we cannot read the response — assume success if no exception
+    const submissionEl = document.getElementById("submissionStatus");
+    if (!submissionEl) return;
+
+    submissionEl.innerHTML = `
+      <div style="background:#e8f5f2; border:1px solid #b2ddd5; border-radius:8px; padding:14px 18px; font-size:14px; color:#0d7c66; display:flex; align-items:center; gap:10px;">
+        <span style="font-size:20px;">✅</span>
+        <span><strong>Response recorded.</strong> Your data has been submitted directly to the research Google Sheet. Thank you for participating!</span>
+      </div>`;
+  } catch (err) {
+    const submissionEl = document.getElementById("submissionStatus");
+    if (submissionEl) submissionEl.innerHTML = `
+      <div style="background:#fff3cd; border:1px solid #ffc107; border-radius:8px; padding:14px 18px; font-size:14px; color:#856404; display:flex; align-items:center; gap:10px;">
+        <span style="font-size:20px;">⚠️</span>
+        <span><strong>Network error.</strong> Please ensure you are connected to the internet, or email a screenshot of your results to the research team.</span>
+      </div>`;
+  }
+}
+
+function retake() {
+  for (const key in responses) delete responses[key];
+  attentionPass[23] = null; attentionPass[41] = null;
+  currentPage = 0;
+  renderPage();
+}
+
+// ── INTERPRETATIONS ────────────────────────────────────────────────────────
+
+function getOverallInterp(pct) {
+  if (pct >= 80) return {
+    label: "Thriving 🌟",
+    desc: "You are experiencing high levels of flourishing at work. You appear to be thriving across most value areas — financially secure, emotionally fulfilled, growing, and contributing meaningfully."
+  };
+  if (pct >= 60) return {
+    label: "Flourishing 🌿",
+    desc: "You are doing well in many areas of workplace flourishing. There are some dimensions where you have solid foundations and others where there may be room for further growth."
+  };
+  if (pct >= 40) return {
+    label: "Emerging 🌱",
+    desc: "You are meeting some of your workplace values but may be facing challenges in key areas. Identifying specific dimensions where you score lower can help guide conversations with your manager or HR."
+  };
+  return {
+    label: "Struggling 🌧️",
+    desc: "Your current work experience appears to be falling short across several value areas. This is not unusual and can reflect situational factors. Consider reflecting on the specific dimensions below to identify where support or change may be most impactful."
+  };
+}
+
+function getDimInterp(id, pct) {
+  const levels = {
+    fundamental: {
+      high:   { label:"Strong Foundation", text:"Your basic work prerequisites — financial security, job stability, health, and work-life balance — appear to be well in place. This forms a solid foundation for broader flourishing." },
+      mid:    { label:"Moderate Foundation", text:"You have some of your fundamental needs met but may face challenges in one or more areas such as finances, job security, or health. These are worth paying attention to." },
+      low:    { label:"Needs Attention", text:"Your foundational work values seem to be under strain. Challenges in areas like financial security, health, or work-life balance can significantly affect overall well-being and performance." }
+    },
+    esteem: {
+      high:   { label:"High Esteem Fulfillment", text:"You feel recognized, respected, and are advancing in your career. Your sense of professional esteem and lifestyle satisfaction appears strong." },
+      mid:    { label:"Moderate Esteem Fulfillment", text:"You experience recognition and respect in some areas but may feel overlooked or stagnant in others. Career advancement or lifestyle aspirations may feel partially unmet." },
+      low:    { label:"Low Esteem Fulfillment", text:"You may be experiencing a lack of recognition, limited career growth, or feeling undervalued at work. These can significantly impact motivation and job satisfaction." }
+    },
+    betterme: {
+      high:   { label:"Growing & Thriving", text:"You experience positive emotions, intellectual engagement, personal growth, and social belonging at work. You are becoming a better version of yourself through your professional life." },
+      mid:    { label:"Moderately Growing", text:"Some aspects of emotional engagement, learning, or social connection at work may be stronger than others. There may be opportunities to deepen your sense of purpose or belonging." },
+      low:    { label:"Growth Constrained", text:"You may not be experiencing the emotional, psychological, or social enrichment that work can offer. This could reflect job fit issues, workplace culture, or a need for development opportunities." }
+    },
+    greatergood: {
+      high:   { label:"Strong Sense of Purpose", text:"You feel that your work contributes to something larger than yourself — whether your organization, customers, or society. This sense of purpose is a powerful component of flourishing." },
+      mid:    { label:"Emerging Purpose", text:"You have some sense that your work matters beyond yourself, but this may not feel consistent or deeply meaningful yet. Exploring the broader impact of your role could strengthen this dimension." },
+      low:    { label:"Purpose Gap", text:"You may not currently feel that your work serves a greater good. This can be related to role design, organizational mission, or personal values alignment — all of which can be explored and improved." }
+    }
+  };
+
+  const band = pct >= 70 ? "high" : pct >= 45 ? "mid" : "low";
+  return levels[id][band];
+}
+
+// ── INIT ───────────────────────────────────────────────────────────────────
+
+renderPage();
+</script>
+</body>
+</html>
